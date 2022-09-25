@@ -1,0 +1,6 @@
+certifi==2022.6.15
+grpcio==1.47.0
+protobuf==3.20.1
+pydgraph==21.3.2
+six==1.16.0
+
