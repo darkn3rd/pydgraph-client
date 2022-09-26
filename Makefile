@@ -4,7 +4,7 @@ build:
 	@docker build -t pydgraph-client:latest .
 
 push:
-	@docker tag pydgraph-client:latest gcr.io/$$GCR_PROJECT_ID/pydgraph-client:latest
+	@docker tag pydgraph-client:latest $$DOCKER_REGISTRY/pydgraph-client:latest
 	@docker push $$DOCKER_REGISTRY/pydgraph-client:latest
 
 test: build

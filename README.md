@@ -37,7 +37,7 @@ make push
 helmfile apply
 ```
 
-## Running Commands from within the contianer
+## Running Commands from within the container
 
 First, exec into the container:
 
