@@ -14,16 +14,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends jq vim \
 
 # grpcurl
 ADD https://raw.githubusercontent.com/dgraph-io/pydgraph/master/pydgraph/proto/api.proto api.proto
-ADD https://github.com/fullstorydev/grpcurl/releases/download/v1.8.7/grpcurl_1.8.7_linux_x86_64.tar.gz /usr/src/app
-RUN tar -xzf grpcurl_1.8.7_linux_x86_64.tar.gz \
-  && rm grpcurl_1.8.7_linux_x86_64.tar.gz \
-  && mv grpcurl /usr/local/bin
+ADD https://github.com/fullstorydev/grpcurl/releases/download/v1.8.7/grpcurl_1.8.7_linux_x86_64.tar.gz /tmp
+RUN tar -xzf /tmp/grpcurl_1.8.7_linux_x86_64.tar.gz -C /tmp \
+  && rm /tmp/grpcurl_1.8.7_linux_x86_64.tar.gz \
+  && mv /tmp/grpcurl /usr/local/bin
 
 # download dgraph linux binaries
-ADD https://github.com/dgraph-io/dgraph/releases/download/v21.03.2/dgraph-linux-amd64.tar.gz /usr/src/app
-RUN tar -xzf dgraph-linux-amd64.tar.gz \
-  && rm dgraph-linux-amd64.tar.gz \
-  && mv badger dgraph /usr/local/bin
+ADD https://github.com/dgraph-io/dgraph/releases/download/v21.03.2/dgraph-linux-amd64.tar.gz /tmp
+RUN tar -xzf /tmp/dgraph-linux-amd64.tar.gz -C /tmp \
+  && rm /tmp/dgraph-linux-amd64.tar.gz \
+  && mv /tmp/badger /tmp/dgraph /usr/local/bin
 
 # datasets
 ADD https://raw.githubusercontent.com/dgraph-io/benchmarks/master/data/1million.schema /usr/src/app/data/1million.schema

@@ -71,8 +71,8 @@ grpcurl -plaintext -proto api.proto \
 python3 load_data.py \
   --plaintext \
   --alpha ${DGRAPH_ALPHA_SERVER}:9080 \
-  --files ./sw.nquads.rdf \
-  --schema ./sw.schema
+  --files ./data/sw.nquads.rdf \
+  --schema ./data/sw.schema
 ```
 
 ## Addendum: Accessing the container registry Kubernetes
