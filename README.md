@@ -24,11 +24,14 @@ export DOCKER_REGISTRY="gcr.io/$GCR_PROJECT_ID"
 # Azure
 export DOCKER_REGISTRY="$AZ_ACR_LOGIN_SERVER"
 
-# Build Image
+# Build image locally
 make build
 
-# Publish Image
+# Publish versioned image
 make push
+
+# Publish Latest from versioned image
+make latest
 ```
 
 ## Deploy to Kubernetes

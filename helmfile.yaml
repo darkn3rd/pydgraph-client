@@ -25,7 +25,7 @@ releases:
                 spec:
                   containers:
                   - name: pydgraph-client
-                    image: {{ requiredEnv "DOCKER_REGISTRY" }}/pydgraph-client:latest
+                    image: {{ requiredEnv "DOCKER_REGISTRY" }}/pydgraph-client:{{ env "BUILD_VERSION" | default "latest" }}
                     env:
                     - name: DGRAPH_ALPHA_SERVER
                       value: {{ env "DGRAPH_RELEASE" | default "dgraph" }}-dgraph-alpha.{{ env "DGRAPH_NS" | default "dgraph" }}.svc.cluster.local

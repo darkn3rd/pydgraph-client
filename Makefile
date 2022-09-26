@@ -1,10 +1,17 @@
 .PHONY: test build push clean
 
+BUILD_VERSION ?= $(shell git describe --always --tags)
+
+
 build:
-	@docker build -t pydgraph-client:latest .
+	@docker build -t pydgraph-client:$(BUILD_VERSION) .
 
 push:
-	@docker tag pydgraph-client:latest $$DOCKER_REGISTRY/pydgraph-client:latest
+	@docker tag pydgraph-client:$(BUILD_VERSION) $$DOCKER_REGISTRY/pydgraph-client:$(BUILD_VERSION)
+	@docker push $$DOCKER_REGISTRY/pydgraph-client:$(BUILD_VERSION)
+
+latest: push
+	@docker tag pydgraph-client:$(BUILD_VERSION) $$DOCKER_REGISTRY/pydgraph-client:latest
 	@docker push $$DOCKER_REGISTRY/pydgraph-client:latest
 
 test: build

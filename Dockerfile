@@ -10,7 +10,7 @@ COPY . /usr/src/app
 
 # install packages: jq
 RUN apt-get update && apt-get install -y --no-install-recommends jq vim \
-&& rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/*
 
 # grpcurl
 ADD https://raw.githubusercontent.com/dgraph-io/pydgraph/master/pydgraph/proto/api.proto api.proto
