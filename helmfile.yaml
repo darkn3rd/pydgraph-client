@@ -36,3 +36,31 @@ releases:
                       limits:
                         memory: "128Mi"
                         cpu: "25m"
+
+{{- if eq (env "CSM_ENABLED") true }}
+          - apiVersion: v1
+            kind: Service
+            metadata:
+              labels:
+              name: pydgraph-client-headless
+            spec:
+              clusterIP: None
+              ports:
+              - name: http
+                port: 80
+                targetPort: 5000
+              selector:
+                app: pydgraph-client
+              type: ClusterIP
+    strategicMergePatches:
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: pydgraph-client
+        spec:
+          template:
+            metadata:
+              annotations:
+                consul.hashicorp.com/connect-inject: "true"
+                consul.hashicorp.com/transparent-proxy: "true"
+{{- end }}

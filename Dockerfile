@@ -31,4 +31,4 @@ ADD https://github.com/dgraph-io/benchmarks/raw/master/data/1million.rdf.gz /usr
 ADD https://raw.githubusercontent.com/dgraph-io/benchmarks/master/data/21million.schema /usr/src/app/data/21million.schema
 ADD https://github.com/dgraph-io/benchmarks/raw/master/data/21million.rdf.gz /usr/src/app/data/21million.rdf.gz
 
-CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
+CMD python server.py
