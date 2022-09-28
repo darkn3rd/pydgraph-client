@@ -1,22 +1,17 @@
-from flask import (
-    Flask,
-    render_template
-)
+#!/usr/bin/env python3
+import connexion
 
-# Create the application instance
-app = Flask(__name__, template_folder="templates")
+def health() -> str:
+    return 'ok\n'
+
+app = connexion.FlaskApp(__name__, specification_dir='openapi/')
 
 # Create a URL route in our application for "/"
 @app.route('/')
-def home():
-    """
-    This function just responds to the browser URL
-    localhost:5000/
+def default() -> str:
+    return 'Pydgraph Client Utility.\nSee supported API with http(s)://<server_hostname>:<port>/ui. \n'
 
-    :return:        the rendered template 'home.html'
-    """
-    return render_template('main.html')
-
-# If we're running in stand alone mode, run the application
+# If running in stand alone mode, run the application
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.add_api('api.yaml', arguments={'title': 'Pydgraph Client'})
+    app.run(host='0.0.0.0', port=5000, debug=False)
