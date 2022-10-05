@@ -68,5 +68,5 @@ releases:
                 consul.hashicorp.com/connect-inject: "true"
                 consul.hashicorp.com/transparent-proxy: "false"
                 consul.hashicorp.com/connect-service-upstreams: >-
-                  dgraph-dgraph-alpha:8080,dgraph-dgraph-alpha-grpc:9080
+                  {{ env "DGRAPH_RELEASE" | default "dgraph" }}-dgraph-alpha:8080,{{ env "DGRAPH_RELEASE" | default "dgraph" }}-dgraph-alpha-grpc:9080
     {{- end }}
